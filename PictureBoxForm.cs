@@ -12,6 +12,7 @@ namespace ThePictureBoxProject
 {
     public partial class pictureBoxForm : Form
     {
+        string currentFileName = "";
         public pictureBoxForm()
         {
             InitializeComponent();
@@ -20,9 +21,12 @@ namespace ThePictureBoxProject
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "Image Files (*.jpg)|*.jpg| (*.bmp)|*.bmp|PNG (*.png)|*.png";
+            ofd.Title = "Open Image";
+            ofd.Filter = "Image Files JPEG (*.jpg)|*.jpg| BMP (*.bmp)|*.bmp|PNG (*.png)|*.png";
+            ofd.FileName = currentFileName;
             if (ofd.ShowDialog().Equals(DialogResult.OK))
             {
+                currentFileName = ofd.FileName;
                 penguinPictureBox.Image = new Bitmap(ofd.FileName);
             }
         }
